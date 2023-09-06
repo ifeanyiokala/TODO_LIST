@@ -5,15 +5,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { NoteModule } from './modules/note.module';
 import "dotenv/config";
 
+
+
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.DATABASE_URI,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false
-      }),
+    MongooseModule.forRoot(process.env.DATABASE_URI),
     NoteModule
   ],
   controllers: [AppController],

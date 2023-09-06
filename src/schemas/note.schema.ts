@@ -1,12 +1,21 @@
-import * as mongoose from 'mongoose';
-const { Schema } = mongoose;
+import { Prop, Schema, Schema, SchemaFactory} from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export const NoteSchema = new Schema({
-    name: String,
-    description: String,
-    tags: {
-        type: String,
-        enum: ["Personal", "Travel", "Life", "Work"],
-    },
-});
 
+export type NoteDocument = HydratedDocument<Note>;
+
+
+@Schema()
+export class Note {
+    @Prop()
+    name: string;
+
+    @Prop()
+    description: string;
+
+    @Prop()
+    type: string;
+
+}
+
+export const NoteSchema = SchemaFactory.createForClass(Note);
